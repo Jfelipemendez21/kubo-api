@@ -52,7 +52,7 @@ npm install
 Copiar lo que esta a continuacion en el archivo .env para configurar la conexión a la base de datos local:
 
 .env
-DATABASE_URL="DATABASE_URL=postgresql://postgres:posgre123@localhost:5432/kubo_db?schema=public&sslmode=disable"
+DATABASE_URL=postgresql://postgres:posgre123@localhost:5432/kubo_db?schema=public&sslmode=disable
 PORT=3003
 
 4️⃣ Configurar la base de datos

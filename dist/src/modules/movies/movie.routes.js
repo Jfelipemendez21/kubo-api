@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const movie_controller_1 = require("./movie.controller");
+const validationDtos_1 = require("../../middlewares/validationDtos");
+const movie_types_1 = require("./movie.types");
+const router = (0, express_1.Router)();
+router.get('/', movie_controller_1.moviesController.getAll);
+router.get('/novedades/', movie_controller_1.moviesController.getNewsMovies);
+router.get('/:id', movie_controller_1.moviesController.getById);
+router.post('/', (0, validationDtos_1.validate)(movie_types_1.createMovieSchema), movie_controller_1.moviesController.create);
+router.patch('/:id', (0, validationDtos_1.validate)(movie_types_1.updateMovieSchema), movie_controller_1.moviesController.update);
+exports.default = router;

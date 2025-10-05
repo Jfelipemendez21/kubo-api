@@ -26,7 +26,7 @@ export class UserService {
   }
 
   async create(data: CreateUserDto) {
-    const userExist = prisma.user.findUnique({where: {email: data.email}})
+    const userExist = await prisma.user.findUnique({where: {email: data.email}})
     if (userExist){
         throw new ApiError(409, `El usuario con email ${data.email} ya existe`);
     }

@@ -17,7 +17,7 @@ export const userController = {
     try {
         const { id } = req.params;
         if(!Number(id)){
-          throw new ApiError(400, "El id debe ser un numero")
+          throw new ApiError(400, "The id should be a number")
         }
         const user = await userService.getById(Number(id));
         res.json({ success: true, content: user });

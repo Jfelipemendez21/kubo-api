@@ -31,7 +31,7 @@ export const moviesController = {
     try {
       const { id } = req.params;
       if(!Number(id)){
-        throw new ApiError(409, "El id debe ser un numero")
+        throw new ApiError(409, "The id should be a number")
       }
       const movie = await moviesService.getById(Number(id));
       

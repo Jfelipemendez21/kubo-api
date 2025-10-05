@@ -74,7 +74,7 @@ export const moviesService = {
       }
     })
 
-    if(movieExist) throw new ApiError(409, `Ya existe una pelicula con el titulo ${movieExist.title}`)
+    if(movieExist) throw new ApiError(409, `Already exist one movie with the title ${movieExist.title}`)
 
     const categoryExists = await prisma.category.findUnique({
         where: { id: data.categoryId }

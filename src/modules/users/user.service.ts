@@ -28,17 +28,17 @@ export class UserService {
   async create(data: CreateUserDto) {
     const userExist = await prisma.user.findUnique({where: {email: data.email}})
     if (userExist){
-        throw new ApiError(409, `El usuario con email ${data.email} ya existe`);
+        throw new ApiError(409, `The user with email ${data.email} already exist`);
     }
     return await prisma.user.create({ data });
   }
 
   async markMovieAsWatched(userId: number, movieId: number) {
     const user = await prisma.user.findUnique({ where: { id: userId } });
-    if (!user) throw new ApiError(404, `El usuario con id ${userId} no existe`);
+    if (!user) throw new ApiError(404, `The user with id ${userId} not exist`);
 
     const movie = await moviesService.getById(movieId);
-    if (!movie) throw new ApiError(404, `La película con id ${movieId} no existe`);
+    if (!movie) throw new ApiError(404, `The movie with id ${movieId} not exist`);
 
     return await prisma.userWatchedMovie.upsert({
       where: { userId_movieId: { userId, movieId } },

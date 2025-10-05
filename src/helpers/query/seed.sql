@@ -23,7 +23,7 @@ VALUES
   (
     'Mad Max: Fury Road',
     'En un futuro post-apocalíptico, Max une fuerzas con Furiosa.',
-    '2015-05-15',
+    '2025-09-15',
     (SELECT id FROM "Category" WHERE name = 'Terror' LIMIT 1),
     NOW(),
     NOW()

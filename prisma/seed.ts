@@ -52,7 +52,7 @@ async function main() {
       {
         title: "Mad Max: Fury Road",
         description: "En un futuro post-apocalíptico, Max une fuerzas con Furiosa.",
-        premiereDate: new Date("2015-05-15"),
+        premiereDate: new Date("2025-09-15"),
         categoryId: terror.id,
       },
       {

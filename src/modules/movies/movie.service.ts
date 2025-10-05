@@ -4,7 +4,7 @@ import { CreateMovieDto, UpdateMovieDto, MovieResponse } from "./movie.types";
 
 export const moviesService = {
     
-  async findAll(filters: { [key: string]: any }): Promise<MovieResponse[]> {
+  async findAll(filters: { [key: string]: any }): Promise<{movies: MovieResponse[], pagination: any}> {
     const limit = filters.limit ? filters.limit : 10  
     const page = filters.page ? filters.page : 1
     const skip = limit * (page - 1) 
@@ -28,8 +28,7 @@ export const moviesService = {
     }
     const order = filters.orderBy ? "desc" : "asc";
     const sortBy = filters.orderBy ? filters.orderBy : "id"
-
-    return await prisma.movie.findMany({
+    const movies= await prisma.movie.findMany({
       where,
       skip,
       take: limit,
@@ -40,6 +39,19 @@ export const moviesService = {
         category: true,
       },
     });
+    const totalMovies = await prisma.movie.count({ where });
+
+    const pagination = {
+      currentPage: page,
+      limitPerPage: limit,
+      totalPages: Math.ceil(totalMovies / limit),
+      totalMovies: totalMovies
+    };
+
+    return {
+      movies,
+      pagination
+    };
   },
 
   async getById(id: number): Promise<MovieResponse | null> {
